@@ -2,9 +2,11 @@
 const test = ref('')
 
 
-onMounted(async () => {
-  const { data } = await fetch('/api').then(res => res.json())
-  console.log(data.value)
+onBeforeMount(async () => {
+    const res = await useFetch('/api', { method: 'GET' })
+    const resPost = await useFetch('/api', { method: 'POST' })
+    console.log(res.data.value)
+    console.log(resPost.data.value)
 })
 </script>
 
