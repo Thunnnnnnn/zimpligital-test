@@ -1,8 +1,8 @@
 import { db } from "../../../db";
-import { users } from "../../../db/schema";
+import { artist } from "../../../db/schema";
 
 export default defineEventHandler(async () => {
   return {
-    data: await db.select().from(users),
+    data: await db.select().from(artist),
   };
 });

@@ -7,7 +7,9 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "seed": "tsx server/db/seed.ts",
+    "migrate:dev": "npx drizzle-kit generate && npx drizzle-kit migrate"
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.15",
