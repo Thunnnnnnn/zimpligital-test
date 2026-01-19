@@ -1,8 +1,13 @@
+<script lang="ts" setup>
+const isShowMenu = ref(false);
+</script>
+
 <template>
   <div class="layout">
-    <AppSidebar />
+    <AppSidebar :is-show-menu="isShowMenu" />
     <div class="main">
-      <AppHeader />
+
+      <AppHeader @toggle-menu="isShowMenu = $event" />
       <slot />
     </div>
   </div>

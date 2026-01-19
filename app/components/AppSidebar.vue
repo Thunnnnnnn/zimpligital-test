@@ -1,5 +1,14 @@
+<script lang="ts" setup>
+const props = defineProps({
+  isShowMenu: {
+    type: Boolean,
+    required: true,
+  },
+});
+</script>
+
 <template>
-  <aside class="sidebar">
+  <aside class="sidebar" :class="{ 'is-not-show-menu': !props.isShowMenu }">
     <h2 class="logo">MyMusic</h2>
 
     <nav>
@@ -11,6 +20,21 @@
 </template>
 
 <style scoped>
+@media (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: 100%;
+  }
+
+  .is-not-show-menu {
+    display: none;
+  }
+  
+  .sidebar &.is-not-show-menu {
+    display: none;
+  }
+}
+
 .sidebar {
   width: 240px;
   background: #121212;

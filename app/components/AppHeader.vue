@@ -1,14 +1,24 @@
+<script lang="ts" setup>
+const isShowMenu = ref(false)
+
+const emit = defineEmits(["toggle-menu"])
+
+const toggleMenu = () => {
+  isShowMenu.value = !isShowMenu.value;
+  emit("toggle-menu", isShowMenu.value);
+};
+</script>
+
 <template>
   <header class="header">
-    <input
-      type="text"
-      placeholder="Search for songs..."
-      class="search"
-    />
+    <input type="text" placeholder="Search for songs..." class="search" />
 
-    <div class="user">
-      <span>User</span>
-    </div>
+
+    <button class="text-white fs-2 cursor-pointer menu ms-2" style="background-color: transparent; border: none;"
+      @click="toggleMenu()">
+      ☰
+    </button>
+
   </header>
 </template>
 
@@ -29,5 +39,11 @@
   border-radius: 20px;
   border: none;
   outline: none;
+}
+
+@media (min-width: 768px) {
+  .menu {
+    display: none;
+  }
 }
 </style>
