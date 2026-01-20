@@ -13,10 +13,14 @@
   },
   "dependencies": {
     "@electric-sql/pglite": "^0.3.15",
+    "@nuxtjs/axios": "^5.13.6",
+    "@pinia/nuxt": "^0.11.3",
+    "@tanstack/vue-query": "^5.92.8",
     "bootstrap": "^5.3.8",
     "drizzle-orm": "^0.45.1",
     "nuxt": "^4.2.2",
     "pg": "^8.17.1",
+    "pinia": "^3.0.4",
     "postgres": "^3.4.8",
     "vee-validate": "^4.15.1",
     "vue": "^3.5.26",
@@ -27,5 +31,8 @@
     "dotenv": "^17.2.3",
     "drizzle-kit": "^0.31.8",
     "tsx": "^4.21.0"
+  },
+  "overrides": {
+    "vue": "latest"
   }
 }
