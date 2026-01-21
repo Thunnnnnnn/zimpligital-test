@@ -20,4 +20,15 @@ const getMusicTrackById = async (id: number) => {
   return response;
 };
 
-export { getAllArtist, getArtistById, getAllMusicTracks, getMusicTrackById };
+const getAllCategoriesMusic = async () => {
+  const response = await api.get("/categories-music");
+  return response;
+};
+
+export {
+  getAllArtist,
+  getArtistById,
+  getAllMusicTracks,
+  getMusicTrackById,
+  getAllCategoriesMusic,
+};

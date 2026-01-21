@@ -1,6 +1,12 @@
 // seed.ts
 import { db, pool } from "./";
-import { artist, musicTracks, playlists, playlistTracks } from "./schema";
+import {
+  artist,
+  categoriesMusic,
+  musicTracks,
+  playlists,
+  playlistTracks,
+} from "./schema";
 
 async function seed() {
   console.log("🌱 Start seeding...");
@@ -14,13 +20,37 @@ async function seed() {
   await db.delete(playlists);
   await db.delete(musicTracks);
   await db.delete(artist);
+  await db.delete(categoriesMusic);
 
   // 👤 Artists
-  const [artist1] = await db
+  const artists = await db
     .insert(artist)
-    .values({
-      name: "NewJeans",
-    })
+    .values([
+      {
+        name: "NewJeans",
+      },
+      {
+        name: "PUN",
+      },
+      {
+        name: "Miki Matsubara",
+      },
+    ])
+    .returning();
+  // 📂 Categories Music
+  const category = await db
+    .insert(categoriesMusic)
+    .values([
+      {
+        name: "K-POP",
+      },
+      {
+        name: "J-POP",
+      },
+      {
+        name: "T-POP",
+      },
+    ])
     .returning();
 
   // 🎵 Music Tracks
@@ -29,18 +59,39 @@ async function seed() {
     .values([
       {
         title: "Hype Boy",
-        artistId: artist1.id,
+        artistId: artists[0].id,
         album: "New Jeans",
+        categoriesMusicId: category[0].id,
       },
       {
         title: "Super Shy",
-        artistId: artist1.id,
+        artistId: artists[0].id,
         album: "Get Up",
+        categoriesMusicId: category[0].id,
       },
       {
         title: "Love Dive",
-        artistId: artist1.id,
+        artistId: artists[0].id,
         album: "Love Dive",
+        categoriesMusicId: category[0].id,
+      },
+      {
+        title: "Day One",
+        artistId: artists[1].id,
+        album: "PUN",
+        categoriesMusicId: category[2].id,
+      },
+      {
+        title: "Stay",
+        artistId: artists[1].id,
+        album: "PUN",
+        categoriesMusicId: category[2].id,
+      },
+      {
+        title: "Stay With Me",
+        artistId: artists[2].id,
+        album: 'First Album "Pocket Park"',
+        categoriesMusicId: category[1].id,
       },
     ])
     .returning();

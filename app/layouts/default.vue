@@ -9,8 +9,11 @@ const isShowMenu = ref(false);
 
       <AppHeader @toggle-menu="isShowMenu = $event" />
       <slot />
+
     </div>
+
   </div>
+  <AppFooter />
 </template>
 
 <style scoped>

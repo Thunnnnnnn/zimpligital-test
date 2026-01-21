@@ -1,23 +1,28 @@
 export interface IArtist {
-  id: Number;
-  name: String;
+  id: number;
+  name: string;
 }
 
 export interface IMusicTrackResponse {
-  id: Number;
-  title: String;
-  artistId: Number;
-  album: String;
+  id: number;
+  title: string;
+  artistId: number;
+  album: string;
 }
 
 export interface IPlaylist {
-  id: Number;
-  name: String;
-  musicTracksId: Number;
+  id: number;
+  name: string;
+  musicTracksId: number;
 }
 
 export interface IPlaylistTrack {
-  id: Number;
-  playlistId: Number;
-  musicTrackId: Number;
+  id: number;
+  playlistId: number;
+  musicTrackId: number;
+}
+
+export interface ICategoryMusic {
+  id: number;
+  name: string;
 }

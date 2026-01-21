@@ -9,6 +9,9 @@ export const musicTracks = pgTable("music_tracks", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   title: text("title").notNull(),
   artistId: integer("artistId").references(() => artist.id),
+  categoriesMusicId: integer("categories_music_id").references(
+    () => categoriesMusic.id,
+  ),
   album: text("album"),
 });
 
@@ -22,4 +25,9 @@ export const playlistTracks = pgTable("playlist_tracks", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   playlistId: integer("playlist_id").references(() => playlists.id),
   musicTrackId: integer("music_track_id").references(() => musicTracks.id),
+});
+
+export const categoriesMusic = pgTable("catagories_music", {
+  id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
+  name: text("name").notNull(),
 });
