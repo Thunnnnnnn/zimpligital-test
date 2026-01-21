@@ -5,12 +5,24 @@ import { eq } from "drizzle-orm";
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id");
   try {
+    const result = await db
+      .select()
+      .from(artist)
+      .where(eq(artist.id, Number(id)))
+      .limit(1);
+
+    if (result.length === 0) {
+      event.node.res.statusCode = 404;
+      return {
+        data: null,
+        code: 404,
+        message: "Artist not found",
+      };
+    }
+
     return {
-      data: await db
-        .select()
-        .from(artist)
-        .where(eq(artist.id, Number(id))),
-      code: event.node.res.statusCode,
+      data: result[0],
+      code: 200,
       message: "success",
     };
   } catch (error) {

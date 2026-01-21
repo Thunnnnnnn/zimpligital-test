@@ -12,25 +12,45 @@ const focusBadge = (id: number) => {
     idBadgeFocus.value = id;
 };
 
+const handlePlay = async (id: number) => {
+    const find = store.musicTracks.find((track) => {
+        if (track.music_tracks.id === id) {
+            store.musicTrack = track;
+            store.musicId = id;
+        }
+    });
+
+    if (find) {
+        store.musicTrack = find
+        store.musicId = id;
+    }
+};
+
 onMounted(async () => {
     await store.getAllCategoriesMusic();
+
+    await store.getAllMusicTracks();
 });
 </script>
 
 <template>
-    <div class="container">
-        <div class="mt-4">
-            <div class="row">
-                <div class="col-12 d-flex flex-row gap-3">
-                    <span v-for="badge in store.badges" class="badge"
-                        :class="idBadgeFocus === badge.id ? 'focused' : ''" @click="focusBadge(badge.id)">
-                        {{ badge.name }}
-                    </span>
-                </div>
+
+    <div class="mt-4 container-fluid">
+        <div class="row">
+            <div class="col-12 d-flex flex-row gap-3">
+                <span v-for="badge in store.badges" class="badge" :class="idBadgeFocus === badge.id ? 'focused' : ''"
+                    @click="focusBadge(badge.id)">
+                    {{ badge.name }}
+                </span>
             </div>
         </div>
 
-        <!-- <audio controls src="" /> -->
+        <div class="row mt-3">
+            <div v-for="value in store.musicTracks"
+                class="col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-4">
+                <VMusicCard :artist="value.artist" :musicTracks="value.music_tracks" @play="handlePlay($event)" />
+            </div>
+        </div>
     </div>
 </template>
 
@@ -61,6 +81,5 @@ onMounted(async () => {
 .focused:hover {
     background-color: #a7a7a7;
     color: #121212;
-
 }
 </style>

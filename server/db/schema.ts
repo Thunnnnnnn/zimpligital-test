@@ -13,6 +13,8 @@ export const musicTracks = pgTable("music_tracks", {
     () => categoriesMusic.id,
   ),
   album: text("album"),
+  musicUrl: text("music_url").notNull().default(""),
+  albumImgUrl: text("album_img_url").notNull().default(""),
 });
 
 export const playlists = pgTable("playlists", {

@@ -12,7 +12,7 @@ const toggleMenu = () => {
 <template>
   <header class="header">
     <div class="d-flex gap-3 align-items-center">
-      <div v-if="!isShowMenu" class="logo mb-6">
+      <div class="logo mb-6">
         <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="28"
           height="28" fill="white">
           <path
@@ -36,10 +36,22 @@ const toggleMenu = () => {
 </template>
 
 <style scoped>
-@media (min-width: 768px) {
+@media (min-width: 905px) {
+  .header {
+    width: calc(100vw - 240px);
+    left: 240px;
+  }
+
   .header .logo {
     display: none;
     font-size: 16px;
+  }
+}
+
+@media (max-width: 905px) {
+  .header {
+    width: 100vw;
+    left: 0;
   }
 }
 
@@ -65,6 +77,9 @@ const toggleMenu = () => {
   align-items: center;
   justify-content: space-between;
   padding: 0 24px;
+  position: fixed;
+  width: 100vw;
+  z-index: 1000;
 }
 
 .search {
@@ -76,7 +91,7 @@ const toggleMenu = () => {
   height: 44px;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 905px) {
   .menu {
     display: none;
   }

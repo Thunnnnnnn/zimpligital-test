@@ -4,10 +4,18 @@ export interface IArtist {
 }
 
 export interface IMusicTrackResponse {
+  music_tracks: IMusicTrack;
+  artist: IArtist;
+}
+
+export interface IMusicTrack {
   id: number;
   title: string;
   artistId: number;
+  categoriesMusicId: number;
   album: string;
+  musicUrl: string;
+  albumImgUrl: string;
 }
 
 export interface IPlaylist {

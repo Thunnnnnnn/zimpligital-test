@@ -31,11 +31,7 @@ const props = defineProps({
 </template>
 
 <style scoped>
-@media (max-width: 768px) {
-  .sidebar {
-    position: fixed;
-    height: 100%;
-  }
+@media (max-width: 905px) {
 
   .is-not-show-menu {
     display: none;
@@ -44,6 +40,17 @@ const props = defineProps({
   .sidebar &.is-not-show-menu {
     display: none;
   }
+
+
+}
+
+@media (min-width: 768px) {
+  .logo {
+    display: flex;
+    justify-content: start;
+
+    align-items: center;
+  }
 }
 
 .sidebar {
@@ -51,6 +58,9 @@ const props = defineProps({
   background: #121212;
   color: white;
   padding: 16px;
+  position: fixed;
+  height: 100%;
+  z-index: 999;
 }
 
 .logo {
@@ -75,7 +85,6 @@ nav a {
 
 nav a.router-link-active {
   color: #1db954;
-  background-color: white;
   border-radius: 8px;
 }
 </style>

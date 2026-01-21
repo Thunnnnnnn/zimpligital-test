@@ -5,12 +5,23 @@ import { eq } from "drizzle-orm";
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id");
   try {
+    const result = await db
+      .select()
+      .from(musicTracks)
+      .where(eq(musicTracks.id, Number(id)))
+      .leftJoin(artist, eq(musicTracks.artistId, artist.id))
+      .limit(1);
+
+    if (result.length === 0) {
+      event.node.res.statusCode = 404;
+      return {
+        data: null,
+        code: 404,
+        message: "Music track not found",
+      };
+    }
     return {
-      data: await db
-        .select()
-        .from(musicTracks)
-        .where(eq(musicTracks.id, Number(id)))
-        .leftJoin(artist, eq(musicTracks.artistId, artist.id)),
+      data: result[0],
       code: event.node.res.statusCode,
       message: "success",
     };

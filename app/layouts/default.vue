@@ -4,22 +4,45 @@ const isShowMenu = ref(false);
 
 <template>
   <div class="layout">
+
     <AppSidebar :is-show-menu="isShowMenu" />
+
     <div class="main">
 
       <AppHeader @toggle-menu="isShowMenu = $event" />
-      <slot />
+      <div class="responsive">
+        <slot />
+      </div>
 
     </div>
 
   </div>
-  <AppFooter />
+  <div class="responsive-footer">
+    <AppFooter />
+  </div>
 </template>
 
 <style scoped>
 .layout {
   display: flex;
-  height: 100vh;
+}
+
+.responsive {
+  padding-left: 240px;
+  padding-bottom: 80px;
+  padding-top: 64px;
+}
+
+.responsive-footer {
+  /* padding-left: 240px; */
+  padding-bottom: 80px;
+  padding-top: 64px;
+}
+
+@media (max-width: 905px) {
+  .responsive {
+    padding-left: 0px;
+  }
 }
 
 .main {
