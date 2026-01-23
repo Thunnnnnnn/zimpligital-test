@@ -18,6 +18,13 @@ yarn
 
 install docker and run `docker compose up -d` 
 
+Setup .env
+
+```
+DATABASE_URL="postgresql://postgres:postgres@localhost:5432/postgres"
+API_URL="http://localhost:3000/api/"
+```
+
 set database table as 
 
 ```bash
