@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-  css: ["bootstrap/dist/css/bootstrap.min.css"],
+  css: ["bootstrap/dist/css/bootstrap.min.css", "~/assets/css/sweetalert.css"],
   compatibilityDate: "2025-07-15",
   devtools: { enabled: false },
 
@@ -17,4 +17,7 @@ export default defineNuxtConfig({
   },
 
   modules: ["@pinia/nuxt"],
+  typescript: {
+    typeCheck: true,
+  },
 });

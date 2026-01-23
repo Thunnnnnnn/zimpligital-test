@@ -3,11 +3,15 @@ import { playlists, musicTracks } from "../../../db/schema";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
-  const data = await db.select().from(playlists);
+  const body = await readBody(event);
+  const [id] = await db
+    .insert(playlists)
+    .values({ ...body })
+    .returning({ id: playlists.id });
 
   try {
     return {
-      data: data,
+      data: id,
       code: event.node.res.statusCode,
       message: "success",
     };

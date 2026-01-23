@@ -1,13 +1,13 @@
 import { db } from "../../../db";
-import { playlists, musicTracks } from "../../../db/schema";
-import { eq } from "drizzle-orm";
+import { playlistTracks } from "../../../db/schema";
 
 export default defineEventHandler(async (event) => {
-  const data = await db.select().from(playlists);
+  const body = await readBody(event);
+  await db.insert(playlistTracks).values({ ...body });
 
   try {
     return {
-      data: data,
+      data: null,
       code: event.node.res.statusCode,
       message: "success",
     };

@@ -20,7 +20,7 @@ export const musicTracks = pgTable("music_tracks", {
 export const playlists = pgTable("playlists", {
   id: integer("id").primaryKey().generatedAlwaysAsIdentity(),
   name: text("name").notNull(),
-  musicTracksId: integer("music_tracks_id").references(() => musicTracks.id),
+  // musicTracksId: integer("music_tracks_id").references(() => musicTracks.id),
 });
 
 export const playlistTracks = pgTable("playlist_tracks", {

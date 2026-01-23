@@ -1,5 +1,10 @@
 import { db } from "../../../db";
-import { playlistTracks, playlists, musicTracks } from "../../../db/schema";
+import {
+  playlistTracks,
+  playlists,
+  musicTracks,
+  artist,
+} from "../../../db/schema";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
@@ -11,10 +16,8 @@ export default defineEventHandler(async (event) => {
         .from(playlistTracks)
         .where(eq(playlists.id, Number(id)))
         .leftJoin(playlists, eq(playlistTracks.playlistId, playlists.id))
-        .rightJoin(
-          musicTracks,
-          eq(playlistTracks.musicTrackId, musicTracks.id),
-        ),
+        .leftJoin(musicTracks, eq(playlistTracks.musicTrackId, musicTracks.id))
+        .leftJoin(artist, eq(musicTracks.artistId, artist.id)),
       code: event.node.res.statusCode,
       message: "success",
     };

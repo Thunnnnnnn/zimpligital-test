@@ -10,8 +10,10 @@ const getArtistById = async (id: number) => {
   return response;
 };
 
-const getAllMusicTracks = async () => {
-  const response = await api.get("/music-track");
+const getAllMusicTracks = async (badge?: number) => {
+  const response = await api.get(
+    badge ? "/music-track?categoriesMusicId=" + badge : "/music-track",
+  );
   return response;
 };
 

@@ -10,14 +10,19 @@ const props = defineProps({
     artist: {
         type: Object as PropType<IArtist>,
         required: true,
-    }
+    },
+
+    active: {
+        type: Boolean,
+        default: false,
+    },
 });
 
 const emit = defineEmits(['play']);
 </script>
 
 <template>
-    <div class="card">
+    <div class="card" :class="active ? 'border border-2 border-success' : ''">
         <div class="card-body">
             <div class="row mt-md-3">
                 <div class="col-4 col-xs-3 col-sm-12">
@@ -38,7 +43,7 @@ const emit = defineEmits(['play']);
             </div>
 
 
-            <button class="play-btn" @click="emit('play', musicTracks.id)">
+            <button class="play-btn" :class="{ active: active }" @click="emit('play', musicTracks.id)">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
                     <path
                         d="M20.492,7.969,10.954.975A5,5,0,0,0,3,5.005V19a4.994,4.994,0,0,0,7.954,4.03l9.538-6.994a5,5,0,0,0,0-8.062Z" />
@@ -90,10 +95,28 @@ img {
     height: 48px;
     border-radius: 50%;
     border: none;
+    background-color: #adadad;
+    svg {
+        fill: #ffffff;
+    }
+}
+
+.play-btn.active {
+    svg {
+        fill: #1db954;
+    }
+
+    border: 2px solid #1db954;
+    background-color: #121212;
 }
 
 .play-btn:hover {
     background-color: #d6d6d6;
+    cursor: pointer;
+}
+
+.play-btn.active:hover {
+    background-color: #1ed76040;
     cursor: pointer;
 }
 

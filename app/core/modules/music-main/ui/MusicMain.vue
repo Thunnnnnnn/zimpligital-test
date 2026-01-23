@@ -4,12 +4,15 @@ import { useMusicMainStore } from '../store/musicMainStore';
 const store = useMusicMainStore();
 const idBadgeFocus = ref<number>(0);
 
-const focusBadge = (id: number) => {
+const focusBadge = async (id: number) => {
     if (idBadgeFocus.value === id) {
         idBadgeFocus.value = 0;
+        await store.getAllMusicTracks();
         return;
     }
     idBadgeFocus.value = id;
+
+    await store.getMusicTrackByBadgeId(id);
 };
 
 const handlePlay = async (id: number) => {
@@ -28,8 +31,6 @@ const handlePlay = async (id: number) => {
 
 onMounted(async () => {
     await store.getAllCategoriesMusic();
-
-    await store.getAllMusicTracks();
 });
 </script>
 
@@ -46,9 +47,15 @@ onMounted(async () => {
         </div>
 
         <div class="row mt-3">
+            <div class="col-12 my-4">
+                <h3 class="text-white fw-bold">
+                    {{idBadgeFocus === 0 ? 'All Music' : store.badges.find((b) => b.id === idBadgeFocus)?.name}}
+                </h3>
+            </div>
             <div v-for="value in store.musicTracks"
                 class="col-12 col-sm-6 col-md-4 col-xl-3 d-flex justify-content-center mb-4">
-                <VMusicCard :artist="value.artist" :musicTracks="value.music_tracks" @play="handlePlay($event)" />
+                <VMusicCard :active="store.musicId === value.music_tracks.id" :artist="value.artist"
+                    :musicTracks="value.music_tracks" @play="handlePlay($event)" />
             </div>
         </div>
     </div>
@@ -73,13 +80,11 @@ onMounted(async () => {
 }
 
 .focused {
-    background-color: white;
-    color: #121212;
+    background-color: #1db954;
     border: 1px solid #121212;
 }
 
 .focused:hover {
-    background-color: #a7a7a7;
-    color: #121212;
+    background-color: #1db95470;
 }
 </style>

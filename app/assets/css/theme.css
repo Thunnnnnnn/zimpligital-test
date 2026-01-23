@@ -1,0 +1,15 @@
+:root {
+  /* 🎵 Main colors */
+  --bs-body-bg: #0f0f0f;
+  --bs-body-color: #ffffff;
+
+  --primary: #1db954; /* Spotify green */
+  --secondary: #1f1f1f;
+  --card-bg: #181818;
+
+  /* Text */
+  --text-muted: #b3b3b3;
+
+  /* Radius */
+  --radius-lg: 16px;
+}

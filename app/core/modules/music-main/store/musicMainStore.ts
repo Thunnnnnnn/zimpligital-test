@@ -67,11 +67,13 @@ export const useMusicMainStore = defineStore("music-main", {
 
       if (res.status === 200) {
         this.musicTracks = res.data.data;
+      }
+    },
 
-        if (res.data.data.length > 0) {
-          this.musicTrack = res.data.data[0];
-          this.musicId = res.data.data[0].music_tracks.id;
-        }
+    async getMusicTrackByBadgeId(id: number) {
+      const res = await getAllMusicTracks(id);
+      if (res.status === 200) {
+        this.musicTracks = res.data.data;
       }
     },
   },

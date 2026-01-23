@@ -89,6 +89,12 @@ const toggleMenu = () => {
   border: none;
   outline: none;
   height: 44px;
+  background-color: #3a3a3a;
+  
+}
+
+.search::placeholder {
+  color: #b3b3b3; 
 }
 
 @media (min-width: 905px) {

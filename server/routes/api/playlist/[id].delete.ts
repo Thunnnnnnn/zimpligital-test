@@ -1,15 +1,14 @@
 import { db } from "../../../db";
-import { playlists, musicTracks } from "../../../db/schema";
+import { playlists } from "../../../db/schema";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, "id");
+
+  await db.delete(playlists).where(eq(playlists.id, Number(id)));
   try {
     return {
-      data: await db
-        .select()
-        .from(playlists)
-        .where(eq(playlists.id, Number(id))),
+      data: null,
       code: event.node.res.statusCode,
       message: "success",
     };
