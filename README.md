@@ -1,8 +1,8 @@
-# Nuxt Minimal Starter
-
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+# Test zimpligital music player
 
 ## Setup
+
+### Node version require --> Node 22 ++
 
 Make sure to install dependencies:
 
@@ -10,66 +10,38 @@ Make sure to install dependencies:
 # npm
 npm install
 
-# pnpm
-pnpm install
-
 # yarn
-yarn install
-
-# bun
-bun install
+yarn
 ```
 
-## Development Server
+## Development Server Setup
 
+install docker and run `docker compose up -d` 
+
+set database table as 
+
+```bash
+# npm
+npm run migrate:dev 
+
+# yarn
+yarn migrate:dev
+```
+
+Seed data for test
+```bash
+# npm
+npm run seed
+
+# yarn
+yarn seed
+```
 Start the development server on `http://localhost:3000`:
 
 ```bash
 # npm
 npm run dev
 
-# pnpm
-pnpm dev
-
 # yarn
 yarn dev
-
-# bun
-bun run dev
 ```
-
-## Production
-
-Build the application for production:
-
-```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
